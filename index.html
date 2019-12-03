@@ -1,11 +1,34 @@
-<div class="container">
-	<h2 id="city">Chicago</h2>
-	<div class="middle">
-	<img src="" alt="icon" id="icon">
-		<div class="degrees">
-		<h1 id="temp">25</h1>
-			<span>&#176;</span>
-			<h3 id="desc">Cloudy</h3>
-		</div>
-	</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App - JavaScript</title>
+    <link rel="stylesheet" href="font/Rimouski.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="app-title">
+            <p>Weather</p>
+        </div>
+        <div class="notification"> </div>
+        <div class="weather-container">
+            <div class="weather-icon">
+                <img src="icons/unknown.png" alt="">
+            </div>
+            <div class="temperature-value">
+                <p>- °<span>C</span></p>
+            </div>
+            <div class="temperature-description">
+                <p> - </p>
+            </div>
+            <div class="location">
+                <p>-</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
