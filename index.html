@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Weather App - JavaScript</title>
-    <link rel="stylesheet" href="font/Rimouski.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-<!DOCTYPE html>
-<html>
 
 <head>
-	<link rel="manifest" href="/manifest.json">
-	<link rel="icon" href="favicon.ico" type="image/x-icon" />  
+  <meta charset="UTF-8">
+  <title>Weather App - JavaScript</title>
+  <link rel="stylesheet" href="font/Rimouski.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+
+    <style>
+      .content {
+        display: none;
+        margin: 1em;
+        padding: 70px 0;
+        text-align: center;
+      }
+    }
+    </style>
+    <style>
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 600px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
+		
+<link rel="manifest" href="/manifest.json">
+		
+<link rel="icon" href="favicon.ico" type="image/x-icon" />  
 <link rel="apple-touch-icon" href="images/hello-icon-152.png">   
 <meta name="theme-color" content="white"/>  
 <meta name="apple-mobile-web-app-capable" content="yes">  
@@ -21,203 +48,181 @@
 <meta name="apple-mobile-web-app-title" content="Hello World"> 
 <meta name="msapplication-TileImage" content="images/hello-icon-144.png">  
 <meta name="msapplication-TileColor" content="#FFFFFF">
-	
-	
-	
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>3 screen app</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+
+  <body style="background-color:#e1f0f2;">
 
 
-  <style>
-    .content {
-      display: none;
-      margin: 1em;
-  padding: 70px 0;
-  text-align: center;
-}
-    }
-  </style>
-  <style>
-    /* Set the size of the div element that contains the map */
-    #map {
-      height: 600px;
-      /* The height is 400 pixels */
-      width: 100%;
-      /* The width is the width of the web page */
-    }
-  </style>
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Weather It's Nice or Not</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#search">Forecast<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#googlemaps">Location</a>	
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-</head>
+    <!-- Filter preferences -->
+    <div class="content" id="search">
+      <h4>Current Forecast</h4>
+      <br>
 
-<body style="background-color:#e1f0f2;">
-
-
-  <!-- navigation bar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Weather It's Nice or Not</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#search">Forecast<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#googlemaps">Location</a>	
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#about">About</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Filter preferences -->
-  <div class="content" id="search">
-    <h4>Current Forecast</h4>
-    <br>
-
-        <div class="app-title">
+      <div class="app-title">
+      </div>
+      <div class="notification"></div>
+      <div class="weather-container">
+        <div class="location">
+          <p>-</p>
         </div>
-        <div class="notification"> </div>
-        <div class="weather-container">
-					  <div class="location">
-                <p> - </p>
-            </div>
-            <div class="weather-icon">
-                <img src="icons/unknown.png" alt="">
-            </div>
-            <div class="temperature-value">
-                <p>- °<span>C</span></p>
-            </div>
-            <div class="temperature-description">
-                <p> - </p>
-            </div>
-
+        <div class="weather-icon">
+          <img src="icons/unknown.png" alt="">
         </div>
+				        <div class="temperature-description">
+          <p>-</p>
+        </div>
+        <div class="temperature-value">
+          <p>- °<span>C</span>
+          </p>
+        </div>
+
+
+      </div>
     </div>
 
 
-<!-- GOOLGE MAPS MARKER -->
-	
-  <div class="content" id="googlemaps">
-    <h4>Current Location</h4>
-    <!--The div element for the map -->
-    <div id="map"></div>
-        
-		
-<script>
-      var map, infoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 41.8781, lng: -87.6298},
-          zoom: 16
-        });
-        infoWindow = new google.maps.InfoWindow;
+    <!-- GOOLGE MAPS MARKER -->
 
-        // HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+    <div class="content" id="googlemaps">
+      <h4>Current Location</h4>
+      <!--The div element for the map -->
+      <div id="map"></div>
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('You are here.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
+
+      <script>
+        var map, infoWindow;
+
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+              lat: 41.8781,
+              lng: -87.6298
+            },
+            zoom: 16
           });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+          infoWindow = new google.maps.InfoWindow;
+          // HTML5 geolocation.
+          if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+              infoWindow.setPosition(pos);
+              infoWindow.setContent('You are here.');
+              infoWindow.open(map);
+              map.setCenter(pos);
+            }, function() {
+              handleLocationError(true, infoWindow, map.getCenter());
+            });
+          } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+          }
         }
-      }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
-    </script>
-		
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          infoWindow.setPosition(pos);
+          infoWindow.setContent(browserHasGeolocation ? 'Error: The Geolocation service failed.' : 'Error: Your browser doesn\'t support geolocation.');
+          infoWindow.open(map);
+        }
+      </script>
 
 
 
-    <!--Load the API from the specified URL
+
+      <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTDBVJ2Dup-JiuF8U9ZCknI-PjKmgr2-w&callback=initMap">
-    </script>
-  </div>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTDBVJ2Dup-JiuF8U9ZCknI-PjKmgr2-w&callback=initMap">
+      </script>
+    </div>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
-  <div class="content" id="about">
-<header class='masthead'>
-  <h1 class='masthead-heading'>Welcome!</h1>
-</header>
+    <div class="content" id="about">
+      <header class='masthead'>
+        <h1 class='masthead-heading'>Welcome!</h1>
+      </header>
 
 
-<section class="questions-section">
-    <h1><u>How It Works</u></h1>
-	<p>Pop-up will display to allow access to user's location</p>
-    <p>Tap the weather measurement to switch between Kelvin and Celsius</p>
-	<p>Location display on google maps is based on geolocation used within the API</p>
-	<p>Weather descrption is based on icon displayed from API</p>
-</section>
-		
-		<section class="introduction-section">
-    <h1><u>About Me</u></h1>
-			<br>
-			<h4>What do you do?</h4>
-    <p>I am a 3rd year computer science student.</p>
-			<h4>What are your interests?</h4>
-			<p>I love the technology and business.</p>
-			<h4>What is your dream?</h4>
-			<p>My dream is to run something great.</p>
-</section>
+      <section class="questions-section">
+        <h1><u>How It Works</u></h1>
+        <p>Pop-up will display to allow access to user's location</p>
+        <p>Tap the weather measurement to switch between Kelvin and Celsius</p>
+        <p>Location display on google maps is based on geolocation used within the API</p>
+        <p>Weather descrption is based on icon displayed from API</p>
+      </section>
 
-<footer class="content-footer">
-    <p>Follow me on:</p>
-    <ul class="social">
-        <li><a class="css-is-deranged" href="https://github.com/james-iorgovan">GitHub</a></li>
-			<li><a class="css-is-deranged" href="https://www.linkedin.com/in/james-iorgovan/">LinkedIn</a></li>
-			<li><a class="css-is-deranged" href="https://www.youtube.com/channel/UCX2TtPS1kq9Ug0HzoIYH01A?view_as=subscriber">YouTube</a></li>
-    </ul>
-  
-</footer>
-  </div>
+      <section class="introduction-section">
+        <h1><u>About Me</u></h1>
+        <br>
+        <h4>What do you do?</h4>
+        <p>I am a 3rd year computer science student.</p>
+        <h4>What are your interests?</h4>
+        <p>I love the technology and business.</p>
+        <h4>What is your dream?</h4>
+        <p>My dream is to run something great.</p>
+      </section>
 
-  <script>
-    hideScreens();
+      <footer class="content-footer">
+        <p>Follow me on:</p>
+        <ul class="social">
+          <li><a class="css-is-deranged" href="https://github.com/james-iorgovan">GitHub</a>
+          </li>
+          <li><a class="css-is-deranged" href="https://www.linkedin.com/in/james-iorgovan/">LinkedIn</a>
+          </li>
+          <li><a class="css-is-deranged" href="https://www.youtube.com/channel/UCX2TtPS1kq9Ug0HzoIYH01A?view_as=subscriber">YouTube</a>
+          </li>
+        </ul>
 
-    function hideScreens() {
-      $(".content").hide();
-    }
-    $(document).ready(function() {
-      $(".nav-link").on("click", function() {
-        hideScreens();
-        var target = $(this).attr("href");
-        $(target).show();
+      </footer>
+    </div>
+
+    <script>
+      hideScreens();
+
+      function hideScreens() {
+        $(".content").hide();
+      }
+      $(document).ready(function() {
+        $(".nav-link").on("click", function() {
+          hideScreens();
+          var target = $(this).attr("href");
+          $(target).show();
+        });
       });
-    });
-  </script>
+    </script>
 
-<script src="app.js"></script>
-    
-    
-</body>
-</html>
+    <script src="app.js"></script>
+
+
+  </body>
+
+  </html>
