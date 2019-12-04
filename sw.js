@@ -1,9 +1,10 @@
 var cacheName = 'it202-bigProject';
 var filesToCache = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/js/main.js',
+  './',
+  './index.html',
+  './style.css',
+  './js/main.js',
+	'./app.js'
 ];
 
 /* Start the service worker and cache all of the app's content */
