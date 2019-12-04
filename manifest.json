@@ -27,7 +27,7 @@
       "type": "image/png"
     }],
   "lang": "en-US",
-  "start_url": "/it202-bigProject",
+  "start_url": "https://james-iorgovan.github.io/it202-project1/",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white"
